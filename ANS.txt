@@ -1,0 +1,1419 @@
+QB)
+
+####TEST PLAN
+
+TEST PLAN – Online Admission & Registration System (OARS)
+
+
+1. Test Plan Identifier
+
+Test Plan Name: OARS Test Plan
+
+Version: V1.0
+
+Date: 2025
+
+2. References
+
+SRS (Software Requirement Specification) of OARS
+
+UI design / Screens
+
+Database structure
+
+University Admission Rules
+
+Payment Gateway Guidelines
+
+IEEE Test Plan Format (IEEE 829)
+
+3. Introduction
+
+OARS is an online system used for student admission and registration.
+
+Students can register, fill the admission form, upload documents, check their status, and pay fees online.
+
+Purpose of this test plan is to check that the whole admission system works correctly.
+
+Scope includes: registration, login, form fill-up, document upload, status check, and payment.
+
+Out of scope: internal staff processing, final merit list preparation.
+
+Assumptions: internet will work properly, payment test environment is available.
+
+Risks: heavy traffic on last day, payment failure issues, big-size document upload problems.
+
+4. Features to be Tested
+✅ A. User Account
+
+Create new account
+
+Login / Logout
+
+Forgot password
+
+OTP / Email verification
+
+✅ B. Admission Form
+
+Filling personal details
+
+Academic details
+
+Course selection
+
+Mandatory field validation
+
+Save as draft / Final submit
+
+✅ C. Document Upload
+
+Photo, marksheet, ID proof upload
+
+File type and size validation
+
+Replace document
+
+Upload success/failure message
+
+✅ D. Application Status
+
+Check admission status: Accepted / Rejected / On Hold
+
+Status update messages
+
+✅ E. Payment Module
+
+Card payment
+
+Net-banking payment
+
+Successful payment
+
+Failed/Cancelled payment
+
+Payment receipt
+
+✅ F. Notifications
+
+Email/SMS for registration
+
+Form submission
+
+Payment confirmation
+
+Status change
+
+5. Approach
+
+Black-box testing (test without seeing code).
+
+Functional testing for all features.
+
+Validation testing for required fields and correct inputs.
+
+Usability testing to ensure the system is easy to use.
+
+Compatibility testing on different browsers and devices.
+
+Integration testing between login → form → upload → payment → status.
+
+Regression testing after fixes.
+
+Entry Criteria: basic stable build is ready.
+
+Exit Criteria: no critical bugs open, all major functions working.
+
+Deliverables: test plan, test cases, test reports, defect logs.
+
+6. Environmental Needs
+✅ Hardware
+
+Laptop or PC
+
+Mobile phone (Android + iOS)
+
+✅ Software
+
+Windows or Linux OS
+
+Web browsers: Chrome, Firefox, Edge
+
+Database access (read-only)
+
+Payment gateway sandbox
+
+✅ Network
+
+Stable internet connection
+
+✅ Tools
+
+Selenium (optional)
+
+Test case management tool (or Excel)
+
+Bug reporting tool
+
+7. Staffing & Training Needs
+Team Required:
+
+1 Test Lead
+
+2–3 Testers
+
+1 Developer Support
+
+Training Needed:
+
+System workflow training
+
+How to test payment gateway
+
+Document upload rules
+
+Bug logging and test case writing
+
+8. Responsibilities
+✅ Test Lead:
+
+Prepare test plan
+
+Assign tasks to testers
+
+Review test results
+
+Final approval of testing
+
+✅ Testers:
+
+Write test cases
+
+Execute test cases
+
+Report bugs and retest
+
+✅ Developers:
+
+Fix the bugs
+
+Provide new builds
+
+✅ Project Manager:
+
+Approve test plan
+
+Provide resources
+
+9. Schedule
+Week 1:
+
+Requirement study
+
+Understanding system
+
+Test plan preparation
+
+Week 2:
+
+Test case writing
+
+Test data preparation
+
+Week 3:
+
+Functional testing
+
+Integration testing
+
+Defect reporting
+
+Week 4:
+
+Regression testing
+
+Final testing
+
+Test summary report
+
+10. Approval
+
+Test Lead Signature: __________
+
+Project Manager Signature: __________
+
+Client/University Representative: __________
+
+
+##########################################################################################################
+
+###TEST CASE
+
+1)
+
+OARS_TC_01
+
+Register new user with valid details
+
+Valid name, unique email, valid mobile, strong password, valid OTP
+
+Account created successfully and redirected to login
+
+Account created, OTP verified
+
+Pass
+
+2)
+
+OARS_TC_02
+
+Registration using duplicate email
+
+Existing registered email
+
+System displays “Email already registered”
+
+Duplicate email error shown
+
+Pass
+
+3)
+
+OARS_TC_03
+
+Login with correct credentials
+
+Valid email and password
+
+User should login and see dashboard
+
+Dashboard displayed successfully
+
+Pass
+
+4)
+
+OARS_TC_04
+
+Login with wrong password multiple times
+
+Same email + wrong password 5 times
+
+Error message + account lock/extra verification
+
+Errors shown and account temporarily locked
+
+Pass
+
+5)
+
+OARS_TC_05
+
+Submit admission form with empty mandatory fields
+
+Leave DOB, Course, Address blank
+
+Form should not submit and show error messages
+
+Errors displayed and submission blocked
+
+Pass
+
+6)
+
+OARS_TC_06
+
+Save form as draft → reopen → edit → final submit
+
+Fully filled form
+
+Draft saved; data loads correctly; after final submit, form locked
+
+Draft opened with saved data; final submit locked edits
+
+Pass
+
+7)
+
+OARS_TC_07
+
+Upload valid documents
+
+Photo.jpg 150KB, Marksheet.pdf 800KB
+
+Files should upload successfully
+
+Files uploaded and status “Uploaded” shown
+
+Pass
+
+8)
+
+OARS_TC_08
+
+Upload invalid document (wrong type/size)
+
+EXE file or PDF > 5MB
+
+Error message and upload blocked
+
+Error shown; upload blocked
+
+Pass
+
+9)
+
+OARS_TC_09
+
+Check application status
+
+Submitted application
+
+Status “Accepted/Rejected/On Hold” should be displayed
+
+Status displayed correctly with timestamp
+
+Pass
+
+10)
+
+OARS_TC_10
+
+Successful payment using card
+
+Valid card number, CVV, OTP
+
+Payment success; receipt generated; status updated
+
+Payment successful and receipt shown
+
+Pass
+
+11)
+
+OARS_TC_11
+
+Payment failed or cancelled
+
+Failure card or Cancel during payment
+
+Failure message and retry option
+
+Failure message displayed; retry available
+
+Pass
+
+12)
+
+OARS_TC_12
+
+Attempt duplicate payment after successful payment
+
+Same user tries to pay again
+
+System should block duplicate payment
+
+Duplicate attempt blocked with “Already paid” message
+
+Pass
+
+13)
+
+OARS_TC_13
+
+Reset password using “Forgot Password”
+
+Registered email ID
+
+Reset link/OTP should be sent and password reset should succeed
+
+Reset link received and password changed successfully
+
+Pass
+
+14)
+
+OARS_TC_14
+
+Session timeout after inactivity
+
+Login and stay inactive for timeout duration
+
+System should logout automatically and show “Session expired”
+
+Auto logout happened and session expired message shown
+
+Pass
+
+15)
+
+OARS_TC_15
+
+Check email notification after form submission
+
+Valid submitted application
+
+User should receive confirmation email/SMS
+
+Confirmation email received
+
+Pass
+
+16)
+
+OARS_TC_16
+
+Open system in different browsers
+
+Chrome, Firefox, Edge
+
+Application should work correctly on all supported browsers
+
+Application displayed properly on all browsers
+
+Pass
+
+
+
+#######################################################################################################
+#######################################################################################################
+
+QA)
+
+##TEST PLAN – Cloud Kitchen Aggregator App
+Sr. No.	Test Plan Point	Answer
+1. Test Plan Identifier
+
+CKAA_TestPlan_V1.0
+
+Date: 2025
+
+2. References
+
+SRS document of Cloud Kitchen Aggregator App
+
+UI wireframes / screens
+
+API documents for delivery partners
+
+Payment gateway integration guide
+
+Menu & promotion management rules
+
+IEEE 829 Test Plan Guidelines
+
+3. Introduction
+
+The Cloud Kitchen Aggregator App allows users to browse cloud kitchens, order food online, make payments, and track deliveries.
+
+Kitchens can manage menus, orders, and promotional offers.
+
+App integrates with third-party delivery services and payment partners.
+
+This test plan checks all features to ensure smooth ordering, partner integration, and correct functioning of the complete system.
+
+Scope includes customer app, kitchen panel, admin panel, payments, and delivery tracking.
+
+Out of scope: physical delivery operations and kitchen cooking process.
+
+4. Features to be Tested
+✅ Customer Features
+
+User registration & login
+
+Browse cloud kitchens
+
+View menu & item details
+
+Add to cart, apply promo codes
+
+Place order & track order
+
+Online payment (UPI, card, net-banking)
+
+Notifications (SMS/Email/App alerts)
+
+✅ Cloud Kitchen (Merchant) Features
+
+Login
+
+Add/update menu items
+
+Manage order status (Accept/Reject/Prepare/Ready)
+
+Apply offers & promotions
+
+✅ Admin Features
+
+Add/remove kitchens
+
+Manage categories & promotions
+
+Monitor orders & transactions
+
+✅ Third-Party Integrations
+
+Delivery partner API
+
+Payment gateway API
+
+5. Approach
+
+Black-box testing for all screens and workflows
+
+Functional testing: ordering, menu, offers, delivery updates, payment
+
+Validation testing: required fields, quantity, promo rules
+
+Integration testing: app ↔ kitchen panel ↔ delivery partner ↔ payment gateway
+
+Regression testing after bug fixes
+
+Usability testing: easy navigation, clarity of menu
+
+Compatibility testing: Android, iOS, Chrome, Firefox
+
+Performance testing: load on order placement and menu listing
+
+✅ Entry Criteria
+
+SRS approved
+
+Stable build available
+
+API keys ready
+
+✅ Exit Criteria
+
+No Critical/High defects
+
+All major flows working
+
+Test summary prepared
+
+✅ Deliverables
+
+Test Plan
+
+Test Cases
+
+Test Data
+
+Defect Report
+
+Test Summary Report
+
+6. Environmental Needs
+✅ Hardware
+
+Android & iOS mobile phones
+
+Laptops/PCs for admin & kitchen portal
+
+✅ Software
+
+Mobile app build (APK/IPA)
+
+Browsers (Chrome, Firefox)
+
+Backend server & database
+
+Payment gateway sandbox
+
+✅ Tools
+
+Postman for APIs
+
+Selenium (optional)
+
+Bug-tracking tool
+
+Network simulator for slow network testing
+
+✅ Network
+
+Stable internet with Wi-Fi/4G/5G
+
+7. Staffing & Training Needs
+
+1 Test Lead
+
+2–3 Test Engineers
+
+1 Automation tester (optional)
+
+Training on app flow, partner API usage
+
+Training on payment gateway testing
+
+Training on menu & promo management
+
+8. Responsibilities
+✅ Test Lead
+
+Prepare test plan
+
+Manage testing schedule
+
+Review test cases
+
+Provide daily status
+
+✅ Test Engineers
+
+Prepare test cases
+
+Execute test cases
+
+Log defects & retest
+
+✅ Developers
+
+Fix bugs
+
+Support testers
+
+✅ Project Manager
+
+Approve plan
+
+Provide resources
+
+9. Schedule
+Week 1:
+
+Requirement study
+
+Test plan preparation
+
+Environment setup
+
+Week 2:
+
+Test case writing
+
+Test data preparation
+
+Week 3:
+
+Functional testing
+
+Integration testing
+
+API testing
+
+Defect reporting
+
+Week 4:
+
+Regression testing
+
+Compatibility testing
+
+Test summary report
+
+10. Approval
+
+Test Lead: ____________________
+
+Project Manager: _______________
+
+Client / Stakeholder: ___________
+
+
+
+#################################################################################
+
+
+##TEST CASE
+
+TEST CASES – Cloud Kitchen Aggregator App (12 Test Cases)
+1)
+
+OARS_TC_01
+
+User registration with valid data
+
+Valid name, email, mobile, password
+
+User account should be created successfully
+
+Account created and redirected to login
+
+Pass
+
+2)
+
+OARS_TC_02
+
+User registration with existing email
+
+Already registered email
+
+System should show “Email already exists”
+
+System displayed duplicate email error
+
+Pass
+
+3)
+
+OARS_TC_03
+
+Login with valid credentials
+
+Correct email and password
+
+User should login and see home screen
+
+Login successful
+
+Pass
+
+4)
+
+OARS_TC_04
+
+View list of cloud kitchens
+
+Open app home page
+
+All active kitchens should load with images & ratings
+
+Kitchen list displayed correctly
+
+Pass
+
+5)
+
+OARS_TC_05
+
+Search kitchen by name
+
+Search keyword “Pizza Hub”
+
+Kitchen with matching name should appear
+
+Correct results displayed
+
+Pass
+
+6)
+
+OARS_TC_06
+
+Add food item to cart
+
+Select any kitchen → select item → Add to cart
+
+Item should be added to cart and item count updated
+
+Item added successfully
+
+Pass
+
+7)
+
+OARS_TC_07
+
+Apply valid promo code
+
+PROMO50 on order > ₹200
+
+Discount should be applied correctly
+
+Discount applied successfully
+
+Pass
+
+8)
+
+OARS_TC_08
+
+Apply invalid/expired promo code
+
+“SAVE100” (expired)
+
+System should show error message
+
+Error displayed “Invalid/Expired promo code”
+
+Pass
+
+9)
+
+OARS_TC_09
+
+Successful online payment
+
+Valid card/UPI test details
+
+Payment should succeed and order should be placed
+
+Payment successful and order confirmed
+
+Pass
+
+10)
+
+OARS_TC_10
+
+Failed payment (cancel during payment)
+
+User clicks “Cancel” on payment page
+
+Order should not be placed and user should get retry option
+
+Failure shown; retry option available
+
+Pass
+
+11)
+
+OARS_TC_11
+
+Order tracking with delivery partner
+
+User opens “Track Order”
+
+Live tracking & status updates should appear (Picked/On the way)
+
+Real-time tracking displayed
+
+Pass
+
+12)
+
+OARS_TC_12
+
+Kitchen accepting an order
+
+Kitchen panel → Accept order
+
+Order status should change to “Accepted” for the user
+
+Status updated correctly
+
+Pass
+
+13)
+
+OARS_TC_13
+
+Kitchen updates item price
+
+Kitchen panel → Edit item → Change price
+
+Updated price should reflect in user app
+
+New price shown correctly
+
+Pass
+
+14)
+
+OARS_TC_14
+
+Remove item from cart
+
+User selects item → Remove
+
+Item should be removed and total amount updated
+
+Item removed successfully and total updated
+
+Pass
+
+15)
+
+OARS_TC_15
+
+Delivery partner fails to pick order
+
+Trigger “Pickup Failed” status
+
+User should see error status and refund option (if prepaid)
+
+Status displayed; refund request option visible
+
+Pass
+
+16)
+
+OARS_TC_16
+
+Restaurant goes offline during ordering
+
+Kitchen switches status to Offline
+
+Users should be unable to place order and see “Not accepting orders”
+
+Ordering disabled with proper message
+
+Pass
+
+
+#########################################################################################
+#########################################################################################
+
+QC)
+
+## TEST PLAN – University Result Declaration System
+
+(Simple + point-wise + IEEE format + your template)
+
+Sr. No.	Test Plan Point	Answer
+1. Test Plan Identifier
+
+URDS_TestPlan_V1.0
+
+Date: 2025
+
+2. References
+
+SRS of University Result System
+
+UI screen designs
+
+Database design (Students, Results, Rechecking, Payments)
+
+Payment gateway integration document
+
+University examination rules
+
+IEEE 829 Test Plan standard
+
+3. Introduction
+
+The University Result Declaration System allows students to check their semester/year-wise results online.
+
+Students can also apply for rechecking/revaluation and make online payments for the same.
+
+Purpose of this test plan is to verify the correctness, accuracy, and reliability of the result display and rechecking workflow.
+
+Scope includes: login, result viewing, marks display, grade calculation, rechecking application, payment, and status tracking.
+
+Out of scope: internal evaluation process of the university, marks entry by faculty.
+
+4. Features to be Tested
+✅ Student Features
+
+Student login with roll number/enrollment number
+
+View result (Semester-wise / Year-wise)
+
+Marksheet display: subjects, marks, grades, remarks
+
+Download/print marksheet
+
+Apply for rechecking/revaluation
+
+Online payment for rechecking
+
+View rechecking status
+
+✅ Admin/Exam Department Features
+
+Upload results
+
+Update rechecking status
+
+Manage payment confirmations
+
+✅ Payment Integration
+
+Card/UPI/Net-banking payment
+
+Success, Failure, Cancel flows
+
+5. Approach
+
+Black-box testing for all modules
+
+Functional testing: result display, rechecking, payment
+
+Validation testing: roll number, DOB, form fields
+
+Integration testing: result module ↔ rechecking ↔ payment gateway
+
+Regression testing after bug fixes
+
+Usability testing: easy to view results
+
+Compatibility testing: test on major browsers
+
+Security testing: student confidentiality of marks
+
+✅ Entry Criteria
+
+SRS approved
+
+Result data uploaded in test environment
+
+Payment sandbox credentials available
+
+✅ Exit Criteria
+
+All critical functionalities tested
+
+0 Critical/High defects open
+
+Test summary prepared
+
+✅ Deliverables
+
+Test Plan
+
+Test Cases
+
+Test Data
+
+Bug report
+
+Final Test Summary
+
+6. Environmental Needs
+✅ Hardware
+
+Laptop/PC
+
+Mobile phone (for mobile result view)
+
+✅ Software
+
+Windows/Linux OS
+
+Browsers: Chrome, Edge, Firefox
+
+Payment gateway sandbox
+
+Database server (test)
+
+✅ Tools
+
+Postman for API testing
+
+Selenium (optional)
+
+Bug reporting tool
+
+✅ Network
+
+Stable internet connection
+
+7. Staffing & Training Needs
+
+1 Test Lead
+
+2 Test Engineers
+
+Basic training on university workflows
+
+Training on payment gateway testing
+
+Training on result upload module
+
+8. Responsibilities
+✅ Test Lead
+
+Prepare test plan
+
+Assign testing tasks
+
+Review test cases
+
+Test execution monitoring
+
+✅ Test Engineers
+
+Prepare test cases
+
+Execute tests
+
+Log and retest defects
+
+✅ Developers
+
+Provide builds
+
+Fix defects
+
+✅ Exam Admin/Client
+
+Validate result display
+
+Provide acceptance approval
+
+9. Schedule
+Week 1
+
+Requirement study
+
+Test plan preparation
+
+Week 2
+
+Test case writing
+
+Test data preparation
+
+Week 3
+
+Functional testing
+
+Integration testing
+
+Bug reporting
+
+Week 4
+
+Regression testing
+
+Payment testing
+
+Final test summary
+
+10. Approval
+
+Test Lead: __________________
+
+Project Manager: ____________
+
+University Exam Officer: _______
+
+
+##############################################################################################
+
+##TEST CASE
+
+1)
+
+URDS_TC_01
+
+Student login with valid credentials
+
+Valid roll number + password
+
+User should login successfully and dashboard should open
+
+Login successful
+
+Pass
+
+2)
+
+URDS_TC_02
+
+Student login with invalid credentials
+
+Wrong roll number or wrong password
+
+System should show “Invalid login details”
+
+Error message displayed
+
+Pass
+
+3)
+
+URDS_TC_03
+
+View semester-wise result
+
+Valid Roll No → Select Semester → View
+
+Correct marksheet should be displayed for selected semester
+
+Result displayed correctly
+
+Pass
+
+4)
+
+URDS_TC_04
+
+View year-wise result
+
+Valid Year selection
+
+All subjects with marks & grade should be shown
+
+Year-wise result displayed
+
+Pass
+
+5)
+
+URDS_TC_05
+
+Marks calculation verification
+
+Example: Marks = 78
+
+Correct grade should appear as per university rules
+
+Grade displayed correctly
+
+Pass
+
+6)
+
+URDS_TC_06
+
+Download/Print marksheet
+
+Click “Download PDF”
+
+PDF should download and contain correct details
+
+Marksheet downloaded successfully
+
+Pass
+
+7)
+
+URDS_TC_07
+
+Apply for rechecking with valid details
+
+Select subject → enter reason → submit
+
+System should accept request and generate application number
+
+Request submitted and application number generated
+
+Pass
+
+8)
+
+URDS_TC_08
+
+Rechecking form submission with missing details
+
+No subject selected or mandatory field empty
+
+System should show error and stop submission
+
+Error shown and submission blocked
+
+Pass
+
+9)
+
+URDS_TC_09
+
+Successful payment for rechecking
+
+Valid card/UPI/net banking test data
+
+Payment should succeed and receipt should be generated
+
+Payment successful, receipt generated
+
+Pass
+
+10)
+
+URDS_TC_10
+
+Payment failure during rechecking application
+
+Use failure test card or cancel payment
+
+System should show failure message and not mark payment as done
+
+Failure message displayed; payment not recorded
+
+Pass
+
+11)
+
+URDS_TC_11
+
+View status of rechecking application
+
+Application number available
+
+Status should display: Pending / In Process / Updated
+
+Status displayed correctly
+
+Pass
+
+12)
+
+URDS_TC_12
+
+Result not found for invalid roll number
+
+Enter wrong or unregistered roll number
+
+System should show “Result not available / Invalid roll number”
+
+Error displayed correctly
+
+Pass
+
+13)
+
+URDS_TC_13
+
+Check if old results (previous years) are visible
+
+Select older semester/year
+
+System should show previous year results correctly
+
+Previous results displayed without errors
+
+Pass
+
+14)
+
+URDS_TC_14
+
+Session timeout after inactivity
+
+Login → stay idle for timeout duration
+
+System should auto logout and show “Session expired”
+
+Auto logout happened correctly
+
+Pass
+
+15)
+
+URDS_TC_15
+
+Check payment receipt download
+
+Payment completed
+
+System should allow download of payment receipt (PDF)
+
+Receipt downloaded successfully
+
+Pass
+
+16)
+
+URDS_TC_16
+
+View updated marks after rechecking
+
+Rechecking completed by admin
+
+Updated marksheet should reflect new marks/remarks
+
+Updated result shown correctly
+
+Pass
+
+
+
+
+
+
+
+
